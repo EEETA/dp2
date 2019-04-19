@@ -1,0 +1,50 @@
+html,body{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.box{
+  width: 180px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border: 2px solid #000;
+  cursor: pointer;
+  overflow: hidden;
+}
+.box span{
+  display: inline-block;
+  color: rgb(0, 153, 255);
+  font-size: 28px;
+  transition: .8s;
+  transition-timing-function: cubic-bezier(0, 1.14, 0.71, 1.18);
+}
+/*
+  通过translateY更改主元素的位置;
+*/
+.box span:nth-child(odd){
+  transform: translateY(-100%);
+}
+.box span:nth-child(even){
+  transform: translateY(100%);
+}
+.box span::before{
+  content: attr(list-name);
+  display: inline-block;
+  position: absolute; /*需要让伪元素脱离文档流，不然居中会有问题 */
+  color:#f00;
+}
+/* 
+  内容区默认显示实则是伪类;
+*/
+.box span:nth-child(odd)::before{
+  transform: translateY(100%);
+}
+.box span:nth-child(even)::before{
+  transform: translateY(-100%);
+}
+.box:hover span{
+  transform: translateY(0)
+}
